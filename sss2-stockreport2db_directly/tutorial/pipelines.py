@@ -29,7 +29,7 @@ class TutorialPipeline(object):
         billname = item['billname']
         counters = item['counters']
         print counters,
-        print "/%s"%nrows
+        print "/%s"%(int(nrows)*4)
         table_name = '_' + number
         soupl = BeautifulSoup(rl.text, 'html.parser')
         content = rl.text
@@ -43,7 +43,8 @@ class TutorialPipeline(object):
             save_2_stocklist(conn, cur, number, billname, ncols, content)
             #t1 = time.time()
             #print 'save_2_stocklist=%s s' % (t1 - t)
-            cur.execute("select lrb_ncols,xjllb_ncols,zcfzb_ncols from stocklist where id='%s'" % number)
+            #------------------set the refill table work in EV to save time----------------------------
+            '''cur.execute("select lrb_ncols,xjllb_ncols,zcfzb_ncols from stocklist where id='%s'" % number)
             conn.commit
             nncols = cur.fetchone()  # 获得所有表格分别的列数
             if nncols.count(0) == 0:  # 如果都已经读完，没有0列的表
@@ -62,7 +63,7 @@ class TutorialPipeline(object):
                     data = cur.fetchone()[0]
                     fill_data(conn, cur, table_name, ncols, data)
                 #t4 = time.time()
-                #print 'fill_data_total_cost=%s s' % (t4 - t3)
+                #print 'fill_data_total_cost=%s s' % (t4 - t3)'''
         cur.close()
         conn.close()
         return item
@@ -82,13 +83,13 @@ def save_stock_amount(conn, cur, number, billname, soupl):  # 保存股本数
     return
 
 
-def save_2_stocklist(conn, cur, number, billname, ncols, content):
+def save_2_stocklist(conn, cur, number, billname, ncols, content)#save report content to mysqldb
     value = (str(billname + '_ncols'), ncols, str(billname + '_data'), content, number)
     cur.execute("update stocklist set %s=%d,%s='%s' where id='%s'" % value)
     conn.commit()
     return
 
-
+'''
 def set_date_column(conn, cur, cvst0, table_name, ncols):
     cvst1 = cvst0.replace('-', '_')
     rda = cvst1.split(',')[:ncols]
@@ -112,3 +113,4 @@ def fill_data(conn, cur, table_name, ncols, data):
     cur.execute(sql % table_name)
     conn.commit()
     return
+'''
