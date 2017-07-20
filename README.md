@@ -13,6 +13,6 @@ the work flow is below\
 The lite branch is setup for reducing the running time(master branch work 7 to 8 hours).\
 Work flow is below.\
 The same with master branh's from step 1 to 3.\
-The step 4 to 5 could be down by EV.
+The step 4 to 5 could be done by EV.
 
 The test result is good. CPU 8% used by python, 3% by mysqld, 99% Max speed; memory 82% used.   
