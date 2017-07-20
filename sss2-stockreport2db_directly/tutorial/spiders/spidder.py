@@ -15,7 +15,9 @@ billnamelist = ["gdfx", "zcfzb", "lrb", "xjllb"]
 check_stock = ["已退市", "停牌", "未上市", "基金资料"]
 nrowsl = []
 c = []
-
+conn = MySQLdb.connect(host='localhost', user='root', passwd='bbac2015', db='stocks',
+                       port=3306, charset='utf8')
+cur = conn.cursor()
 
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
@@ -25,9 +27,6 @@ class QuotesSpider(scrapy.Spider):
 
     def start_requests(self):
         urls = []
-        conn = MySQLdb.connect(host='localhost', user='root', passwd='bbac2015', db='stocks',
-                               port=3306, charset='utf8')
-        cur = conn.cursor()
         cur.execute('select count(*) from stocklist')
         conn.commit()
         nrows = cur.fetchone()[0]

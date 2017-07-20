@@ -83,7 +83,7 @@ def save_stock_amount(conn, cur, number, billname, soupl):  # 保存股本数
     return
 
 
-def save_2_stocklist(conn, cur, number, billname, ncols, content)#save report content to mysqldb
+def save_2_stocklist(conn, cur, number, billname, ncols, content):#save report content to mysqldb
     value = (str(billname + '_ncols'), ncols, str(billname + '_data'), content, number)
     cur.execute("update stocklist set %s=%d,%s='%s' where id='%s'" % value)
     conn.commit()
