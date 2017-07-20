@@ -10,7 +10,7 @@ the work flow is below\
 5. Use 'load' .csv files into SQL to fill the related table 
 6. Done!
 
-the lite branch is setup for reducing the running time(master branch work 7 to 8 hours)
-work flow is below
-the same with master branh's 1 and 2
-ignore the step 3
+The lite branch is setup for reducing the running time(master branch work 7 to 8 hours).\
+Work flow is below.\
+The same with master branh's from step 1 to 3.\
+The step 4 to 5 could be down by EV
